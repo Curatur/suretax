@@ -4,6 +4,7 @@ Dotenv.load       # Second line of spec_helper
 require 'rspec'
 require 'suretax'
 
+require 'awesome_print'
 
 # Load support files
 Dir[File.expand_path(File.dirname(__FILE__) + '/support/**/*.rb')].each do
