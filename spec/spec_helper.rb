@@ -1,2 +1,24 @@
+require 'dotenv'  # First line of spec_helper
+Dotenv.load       # Second line of spec_helper
+
 require 'rspec'
 require 'suretax'
+
+
+# Load support files
+Dir[File.expand_path(File.dirname(__FILE__) + '/support/**/*.rb')].each do
+  |support_file| require support_file
+end
+
+RSpec.configure do |config|
+
+  config.before(:each) do
+    Suretax.configure do |c|
+      c.validation_key = ENV['SURETAX_VALIDATION_KEY']
+      c.base_url = ENV['SURETAX_BASE_URL']
+    end
+  end
+
+end
+
+include SuretaxSpecHelper

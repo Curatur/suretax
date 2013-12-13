@@ -1,29 +1,18 @@
 # Suretax
 
-TODO: Write a gem description
+## Development Environment
 
-## Installation
+Suretax uses [dotenv] to easily switch between development/test environments
+and production.
 
-Add this line to your application's Gemfile:
+You will need to set the following environment variables for the gem to work:
 
-    gem 'suretax'
+- `SURETAX_VALIDATION_KEY` (You can get this from [SureTax][suretax].)
+- `SURETAX_BASE_URL` (This is usually `https://testapi.taxrating.net` for testing.)
 
-And then execute:
+You can do this by creating a .env file in the root of the Suretax gem
+repository (gitignored by default). For more information, please see
+the [dotenv documentation][dotenv]
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install suretax
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+[dotenv]: https://github.com/bkeepers/dotenv
+[suretax]: http://suretax.com
