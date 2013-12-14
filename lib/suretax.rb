@@ -1,6 +1,7 @@
 require "suretax/version"
 require "suretax/configuration"
-
+require "suretax/connection"
+require "suretax/response"
 
 module Suretax
 

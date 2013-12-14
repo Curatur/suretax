@@ -8,4 +8,12 @@ module SuretaxSpecHelper
     ENV['SURETAX_BASE_URL']
   end
 
+  def suretax_client_number
+    ENV['SURETAX_CLIENT_NUMBER']
+  end
+
+  def suretax_post_path
+    ENV['SURETAX_POST_PATH']
+  end
+
 end
