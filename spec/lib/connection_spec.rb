@@ -21,7 +21,13 @@ describe Suretax::Connection do
     end
 
     it 'should return the correct response body' do
-      expect(response.body).to eql(valid_test_response_body)
+      expect(response.body['ResponseCode']).to eql(
+        valid_test_response_body['ResponseCode']
+      )
+
+      expect(response.body['TotalTax']).to eql(
+        valid_test_response_body['TotalTax']
+      )
     end
 
     it 'should have a urlencode header' do
