@@ -4,6 +4,7 @@
 .bundle
 .config
 .yardoc
+spec/fixtures/vcr_cassettes/*
 Gemfile.lock
 InstalledFiles
 _yardoc
