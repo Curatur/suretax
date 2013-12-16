@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/bqsoft/suretax.png)](https://codeclimate.com/github/bqsoft/suretax)
+
 # Suretax
 
 ## Development Environment
