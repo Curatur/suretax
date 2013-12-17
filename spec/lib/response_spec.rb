@@ -50,6 +50,7 @@ describe Suretax::Response do
     end
   end
 
+
   context 'when posting is partially successful' do
     let(:response_body) {
       suretax_wrap_response(success_with_item_errors.to_json)
@@ -110,6 +111,29 @@ describe Suretax::Response do
     it 'should return the correct response body' do
       expect(client_response.body['ResponseCode']).to eql('1101')
       expect(client_response.body['TotalTax']).to be_nil
+    end
+  end
+
+  context 'when posting fails from a malformed request' do
+
+    let(:response_body) {
+      suretax_wrap_response("invalid request")
+    }
+
+    before do
+      api_response_object.success = true
+    end
+
+    it 'has a body' do
+      expect(client_response.body).to eql('invalid request')
+    end
+
+    it 'responds with a 409' do
+      expect(client_response.status).to eql(400)
+    end
+
+    it "is unsuccessful" do
+      expect(client_response).to_not be_success
     end
   end
 end

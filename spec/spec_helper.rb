@@ -36,4 +36,5 @@ RSpec.configure do |config|
 
 end
 
+include RequestSpecHelper
 include SuretaxSpecHelper
