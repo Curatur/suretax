@@ -50,10 +50,6 @@ describe Suretax::Response do
     end
   end
 
-  def suretax_wrap_response(json_string)
-        "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<string xmlns=\"http://tempuri.org/\">" + json_string + "</string>"
-  end
-
   context 'when posting is partially successful' do
     let(:response_body) {
       suretax_wrap_response(success_with_item_errors.to_json)
