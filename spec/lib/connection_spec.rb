@@ -8,26 +8,27 @@ describe Suretax::Connection do
   describe '#post' do
     let(:connection) { Suretax::Connection.new }
 
-    let(:body) { valid_encoded_test_request_body }
+    let(:response_body) { 
+      '<?xml version="1.0" encoding="utf-8"?>\r\n<string xmlns="http://tempuri.org/">{"Successful":"Y","ResponseCode":"9999","HeaderMessage":"Success"}</string>' 
+    }
+
+    let(:request_body) {
+      valid_encoded_test_request_body
+    }
 
     let(:response) {
-      VCR.use_cassette('successful_post') do
-        connection.post(body: body)
-      end
+      connection.post(body: request_body)
     }
+
+    before do
+      stub_request(:post, "#{suretax_url}#{suretax_post_path}").to_return(
+        status: 200,
+        body: response_body
+      )
+    end
 
     it 'should be successful' do
       expect(response).to be_success
-    end
-
-    it 'should return the correct response body' do
-      expect(response.body['ResponseCode']).to eql(
-        valid_test_response_body['ResponseCode']
-      )
-
-      expect(response.body['TotalTax']).to eql(
-        valid_test_response_body['TotalTax']
-      )
     end
 
     it 'should have a urlencode header' do
