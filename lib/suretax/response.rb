@@ -5,10 +5,11 @@ module Suretax
   class Response
     attr_reader :response, :body, :status
 
-    def initialize(response)
-      @response = response
-      sanitized_body = remove_xml_brackets(response.body)
+    def initialize(client_response)
+      @response = client_response
+      sanitized_body = remove_xml_brackets(client_response.body)
       @body = JSON.parse(sanitized_body)
+      @status = client_response.status
     end
 
     def success?
