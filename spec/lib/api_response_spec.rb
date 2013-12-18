@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-include RequestSpecHelper
-
 describe Suretax::Api::Response do
 
   let(:api_response) { Suretax::Api::Response.new(response_body) }
