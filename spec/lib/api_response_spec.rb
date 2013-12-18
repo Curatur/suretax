@@ -29,22 +29,6 @@ describe Suretax::Api::Response do
       end
     end
 
-    describe '#total_tax' do
-      let(:params) {
-        {
-          amount: 1394490,
-          precision: 6,
-          divisor: 1000000
-        }
-      }
-
-      it 'should have the correct tax amount' do
-        expect(api_response.total_tax.to_f).to eql(1.394490)
-        expect(api_response.total_tax.to_s).to eql('1.394490')
-        expect(api_response.total_tax.to_i).to eql(1394490)
-        expect(api_response.total_tax.total_cents).to eql(139)
-        expect(api_response.total_tax.precision).to eql(6)
-        expect(api_response.total_tax.params).to eql(params)
       end
     end
   end
