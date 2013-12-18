@@ -20,8 +20,7 @@ module Suretax
     end
 
     def success?
-      return true if status == 200
-      false
+      status == 200
     end
 
     private
