@@ -7,7 +7,7 @@ module Suretax
         @status = response_body.fetch('ResponseCode')
         @message = response_body.fetch('HeaderMessage')
         @success = response_body.fetch('Successful') == 'Y'
-        @total_tax = Suretax::Api::TaxAmount.new(response_body['TotalTax'])
+        @total_tax = TaxAmount.new(response_body['TotalTax'])
         @groups = response_body.fetch('GroupList').map do |group|
           Group.new(group)
         end

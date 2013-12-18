@@ -15,7 +15,7 @@ module Suretax
         return self
       end
       @body = JSON.parse(sanitized_body)
-      @api = Suretax::Api::Response.new(@body)
+      @api = Api::Response.new(@body)
       @status = map_response_code_to_http_status(api.status)
     end
 

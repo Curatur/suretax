@@ -11,7 +11,7 @@ module Suretax
   end
 
   def self.configure
-    self.configuration ||= Suretax::Configuration.new
+    self.configuration ||= Configuration.new
     yield(configuration)
   end
 end

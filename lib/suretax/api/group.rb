@@ -7,9 +7,7 @@ module Suretax
         @state = response_params.fetch('StateCode')
         @invoice = response_params.fetch('InvoiceNumber')
         @customer = response_params.fetch('CustomerNumber')
-        @taxes = response_params.fetch('TaxList').map do |tax|
-          Suretax::Api::Tax.new(tax)
-        end
+        @taxes = response_params.fetch('TaxList').map { |tax| Tax.new(tax) }
       end
 
     end
