@@ -86,7 +86,7 @@ describe Suretax::Response do
   context 'when posting fails' do
 
     let(:response_body) {
-        "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<string xmlns=\"http://tempuri.org/\">{\"Successful\":\"N\",\"ResponseCode\":\"1101\",\"HeaderMessage\":\"Failure - Error parsing request\",\"ItemMessages\":[],\"ClientTracking\":null,\"TotalTax\":null,\"TransId\":2668242,\"GroupList\":[]}</string>"
+      suretax_wrap_response(valid_failure_response.to_json)
     }
 
     before do
