@@ -22,10 +22,11 @@ describe Suretax::Response do
   let(:client_response) {
     Suretax::Response.new(api_response_object)
   }
+
   context 'when posting is successful' do
 
     let(:response_body) {
-      "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<string xmlns=\"http://tempuri.org/\">{\"Successful\":\"Y\",\"ResponseCode\":\"9999\",\"HeaderMessage\":\"Success\",\"ItemMessages\":[],\"ClientTracking\":\"track\",\"TotalTax\":\"1.394490\",\"TransId\":2668227,\"GroupList\":[{\"StateCode\":\"CA\",\"InvoiceNumber\":\"1\",\"CustomerNumber\":\"000000007\",\"TaxList\":[{\"TaxTypeCode\":\"106\",\"TaxTypeDesc\":\"CA EMERG TEL. USERS SURCHARGE\",\"TaxAmount\":\"0.200760\"},{\"TaxTypeCode\":\"108\",\"TaxTypeDesc\":\"CA P.U.C. FEE\",\"TaxAmount\":\"0.072130\"},{\"TaxTypeCode\":\"109\",\"TaxTypeDesc\":\"CA TELECOM RELAY SYSTEMS SURCHARGE\",\"TaxAmount\":\"0.080000\"},{\"TaxTypeCode\":\"117\",\"TaxTypeDesc\":\"CA HIGH COST FUND(B) SURCHARGE\",\"TaxAmount\":\"0.120000\"},{\"TaxTypeCode\":\"118\",\"TaxTypeDesc\":\"CA TELECONNECT FUND\",\"TaxAmount\":\"0.236000\"},{\"TaxTypeCode\":\"119\",\"TaxTypeDesc\":\"CA HIGH COST FUND(A) SURCHARGE\",\"TaxAmount\":\"0.160000\"},{\"TaxTypeCode\":\"120\",\"TaxTypeDesc\":\"CA ADVANCED SERV FUND SURCH\",\"TaxAmount\":\"0.065600\"},{\"TaxTypeCode\":\"122\",\"TaxTypeDesc\":\"CA UNIVERSAL LIFELINE  SURCHARGE\",\"TaxAmount\":\"0.460000\"}]}]}</string>"
+      suretax_wrap_response(valid_test_response_body.to_json)
     }
 
     it 'has a body' do
