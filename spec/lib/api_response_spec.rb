@@ -8,23 +8,20 @@ describe Suretax::Api::Response do
 
     let(:response_body) { valid_test_response_body }
 
-    describe '#status' do
-      it 'should return the API status code' do
-        expect(api_response.status).to eql('9999')
-      end
+    it 'should return the API status code' do
+      expect(api_response.status).to eql('9999')
     end
 
-    describe '#success?' do
-      it 'should be true' do
-        expect(api_response.success?).to be_true
-      end
+    it 'should be successful' do
+      expect(api_response.success?).to be_true
     end
 
+    it 'should have a message of "Success"' do
+      expect(api_response.message).to eql('Success')
+    end
 
-    describe '#message' do
-      it 'should be "Success"' do
-        expect(api_response.message).to eql('Success')
-      end
+    it 'should have the correct total tax' do
+      expect(api_response.total_tax.to_f).to eql(1.394490)
     end
 
       end
