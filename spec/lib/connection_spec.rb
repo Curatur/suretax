@@ -1,7 +1,4 @@
-
 require 'spec_helper'
-
-include RequestSpecHelper
 
 describe Suretax::Connection do
 
