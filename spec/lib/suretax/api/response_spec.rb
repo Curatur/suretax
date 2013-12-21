@@ -13,7 +13,7 @@ describe Suretax::Api::Response do
     end
 
     it 'should be successful' do
-      expect(api_response.success?).to be_true
+      expect(api_response).to be_success
     end
 
     it 'should have a message of "Success"' do
@@ -47,7 +47,7 @@ describe Suretax::Api::Response do
 
     describe '#success?' do
       it 'should be true' do
-        expect(api_response.success?).to be_true
+        expect(api_response).to be_success
       end
     end
 
