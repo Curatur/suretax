@@ -1,19 +1,14 @@
+require 'monetize'
+
 module Suretax
   module Api
     class TaxAmount
       attr_reader :precision, :divisor
 
-      def initialize(amount)
-        if amount =~ /\A[\d\.]+\z/
-          @amount = amount
-          number_parts = amount.to_s.match(/\A(?<whole>\d+)\.?(?<fractional>\d+)?\z/)
-          @precision = number_parts['fractional'].length
-          @divisor = 10**@precision
-        else
-          @amount = 0
-          @precision = 0
-          @divisor = 1
-        end
+      def initialize(amount, currency = 'US6')
+        @amount = Monetize.parse(amount, currency)
+        @precision = count_significant_decimal_places
+        @divisor = @amount.currency.subunit_to_unit
       end
 
       def to_f
@@ -21,14 +16,14 @@ module Suretax
       end
 
       def to_s
-        @amount
+        @amount.to_s
       end
 
       def to_i
-        (to_f * @divisor).to_i
+        @amount.cents
       end
 
-      def total_cents
+      def cents
         (("%.2f" % to_f).to_f * 100 ).to_i
       end
 
@@ -38,6 +33,12 @@ module Suretax
           precision: precision,
           divisor: divisor
         }
+      end
+
+      private
+
+      def count_significant_decimal_places
+        @amount.currency.subunit_to_unit.to_s.scan(/0/).count
       end
 
     end

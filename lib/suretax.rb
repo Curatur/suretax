@@ -4,6 +4,8 @@ require "suretax/connection"
 require "suretax/response"
 require "suretax/api"
 
+require "money"
+
 module Suretax
 
   class << self
@@ -14,4 +16,5 @@ module Suretax
     self.configuration ||= Configuration.new
     yield(configuration)
   end
+
 end
