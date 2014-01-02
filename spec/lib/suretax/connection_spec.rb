@@ -1,7 +1,4 @@
-
 require 'spec_helper'
-
-include RequestSpecHelper
 
 describe Suretax::Connection do
 
@@ -9,7 +6,7 @@ describe Suretax::Connection do
     let(:connection) { Suretax::Connection.new }
 
     let(:response_body) { 
-      '<?xml version="1.0" encoding="utf-8"?>\r\n<string xmlns="http://tempuri.org/">{"Successful":"Y","ResponseCode":"9999","HeaderMessage":"Success"}</string>' 
+      suretax_wrap_response(valid_test_response_body.to_json)
     }
 
     let(:request_body) {

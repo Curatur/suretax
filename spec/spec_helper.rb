@@ -7,21 +7,15 @@ SimpleCov.start do
   add_filter '/.bundle/'
 end
 
+require 'pry'
 require 'rspec'
 require 'suretax'
-
 require 'awesome_print'
 require 'webmock/rspec'
-require 'vcr'
 
 # Load support files
 Dir[File.expand_path(File.dirname(__FILE__) + '/support/**/*.rb')].each do
   |support_file| require support_file
-end
-
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  c.hook_into :webmock
 end
 
 RSpec.configure do |config|
@@ -35,4 +29,5 @@ RSpec.configure do |config|
 
 end
 
+include RequestSpecHelper
 include SuretaxSpecHelper

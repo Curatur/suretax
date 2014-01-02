@@ -16,4 +16,8 @@ module SuretaxSpecHelper
     ENV['SURETAX_POST_PATH']
   end
 
+  def suretax_wrap_response(json_string)
+    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<string xmlns=\"http://tempuri.org/\">" + json_string + "</string>"
+  end
+
 end

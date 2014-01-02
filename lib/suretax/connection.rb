@@ -14,7 +14,7 @@ module Suretax
     end
 
     def post(body: {}, path: default_post_path)
-      Suretax::Response.new(@link.post(path, encode_body(body)))
+      Response.new(@link.post(path, encode_body(body)))
     end
 
     private

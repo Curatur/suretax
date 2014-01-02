@@ -3,17 +3,24 @@ require 'json'
 module Suretax
 
   class Response
-    attr_reader :response, :body, :status
+    attr_reader :response, :body, :status, :api
 
-    def initialize(client_response)
-      @response = client_response
-      sanitized_body = remove_xml_brackets(client_response.body)
+    def initialize(api_response)
+      @response = api_response
+      sanitized_body = remove_xml_brackets(api_response.body)
+      if sanitized_body == 'invalid request'
+        @body = sanitized_body
+        @status = 400
+        @api = nil
+        return self
+      end
       @body = JSON.parse(sanitized_body)
-      @status = client_response.status
+      @api = Api::Response.new(@body)
+      @status = map_response_code_to_http_status(api.status)
     end
 
     def success?
-      response.success?
+      status == 200
     end
 
     private
@@ -27,6 +34,18 @@ module Suretax
       matches = response_string.match(extract_json_from_urlencoded_string_regex)
       matches['json_string']
     end
+
+    def map_response_code_to_http_status(api_status_code)
+      case api_status_code
+      when '9999'
+        200
+      when '9001'
+        409
+      else
+        400
+      end
+    end
+
   end
 
 end

@@ -105,4 +105,59 @@ module RequestSpecHelper
     }
   end
 
+  def valid_failure_response
+    {
+      "Successful"=>"N",
+      "ResponseCode"=>"1101",
+      "HeaderMessage"=>"Failure - Error parsing request",
+      "ItemMessages"=>[],
+      "ClientTracking"=>nil,
+      "TotalTax"=>nil,
+      "TransId"=>2667859,
+      "GroupList"=>[]
+    }
+  end
+
+  def success_with_item_errors
+    {
+      "Successful"       => "Y",
+      "ResponseCode"     => "9001",
+      "HeaderMessage"    => "Success with Item errors",
+      "ItemMessages"     => [
+        {
+          "LineNumber"   => "1",
+          "ResponseCode" => "9220",
+          "Message"      => "Invalid Unit Type – Must be 00"
+        }
+      ],
+      "ClientTracking"   => "7310",
+      "TotalTax"         => "26.53",
+      "TransId"          => 4366,
+      "GroupList"        => [
+        {
+          "CustomerNumber" => "00123",
+          "InvoiceNumber"  => "12345678",
+          "StateCode"      => "CA",
+          "TaxList"        => [
+            {
+              "TaxAmount"   => "10.45",
+              "TaxTypeCode" => "316",
+              "TaxTypeDesc" => "LOCAL UTILITY USERS TAX"
+            },
+            {
+              "TaxAmount"   => "15.50",
+              "TaxTypeCode" => "035",
+              "TaxTypeDesc" => "FEDERAL UNIVERSAL SERVICE FUND"
+            },
+            {
+              "TaxAmount"   => "0.58",
+              "TaxTypeCode" => "060",
+              "TaxTypeDesc" => "FEDERAL TRS FUND"
+            }
+          ]
+        }
+      ]
+    }
+  end
+
 end

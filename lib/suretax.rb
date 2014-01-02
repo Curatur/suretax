@@ -2,6 +2,7 @@ require "suretax/version"
 require "suretax/configuration"
 require "suretax/connection"
 require "suretax/response"
+require "suretax/api"
 
 module Suretax
 
@@ -10,7 +11,7 @@ module Suretax
   end
 
   def self.configure
-    self.configuration ||= Suretax::Configuration.new
+    self.configuration ||= Configuration.new
     yield(configuration)
   end
 end
