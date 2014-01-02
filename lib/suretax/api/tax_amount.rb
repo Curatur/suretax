@@ -2,7 +2,7 @@ require 'monetize'
 
 module Suretax
   module Api
-    class TaxAmount
+    class Amount
       attr_reader :precision, :divisor
 
       def initialize(amount, currency = 'US6')
@@ -28,7 +28,7 @@ module Suretax
       end
 
       def params
-        { 
+        {
           amount: to_i,
           precision: precision,
           divisor: divisor

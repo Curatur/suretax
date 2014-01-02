@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Suretax::Api::TaxAmount do
-  let(:tax_amount) { Suretax::Api::TaxAmount.new('1.394490') }
+describe Suretax::Api::Amount do
+  let(:tax_amount) { Suretax::Api::Amount.new('1.394490') }
 
   let(:params) {
     {
