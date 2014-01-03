@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Suretax::Api::TaxAmount do
-  let(:tax_amount) { Suretax::Api::TaxAmount.new('1.394490') }
+describe Suretax::Api::Amount do
+  let(:tax_amount) { Suretax::Api::Amount.new('1.394490') }
 
   let(:params) {
     {
@@ -23,8 +23,8 @@ describe Suretax::Api::TaxAmount do
     expect(tax_amount.to_i).to eql(1394490)
   end
 
-  it 'should provide a hard currency value via #total_cents' do
-    expect(tax_amount.total_cents).to eql(139)
+  it 'should provide a hard currency value via #cents' do
+    expect(tax_amount.cents).to eql(139)
   end
 
   it 'should give the number of decimal places via #precision' do

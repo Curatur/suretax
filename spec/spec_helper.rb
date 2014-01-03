@@ -29,5 +29,8 @@ RSpec.configure do |config|
 
 end
 
+# Silence deprecation warning from money/monetize libraries
+I18n.enforce_available_locales = false
+
 include RequestSpecHelper
 include SuretaxSpecHelper

@@ -6,7 +6,7 @@ module Suretax
       def initialize(response_params)
         @code = response_params.fetch('TaxTypeCode')
         @description = response_params.fetch('TaxTypeDesc')
-        @amount = TaxAmount.new(response_params.fetch('TaxAmount'))
+        @amount = Amount.new(response_params.fetch('TaxAmount'))
       end
 
     end
