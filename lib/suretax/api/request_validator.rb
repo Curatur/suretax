@@ -1,10 +1,8 @@
-require 'suretax/validatable'
-
 module Suretax
   module Api
     module RequestValidator
 
-      extend Suretax::Validatable
+      extend Suretax::Concerns::Validatable
 
       def self.valid?(request)
         is_a_list?(request.items) &&

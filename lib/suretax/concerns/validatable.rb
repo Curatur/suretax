@@ -1,6 +1,4 @@
-require 'suretax/validatable'
-
-module Suretax
+module Suretax::Concerns
   module Validatable
 
     def validate_list(list)

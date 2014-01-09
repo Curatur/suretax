@@ -1,4 +1,7 @@
 require "suretax/version"
+
+require "suretax/concerns"
+
 require "suretax/configuration"
 require "suretax/connection"
 require "suretax/response"

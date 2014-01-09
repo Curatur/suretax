@@ -2,7 +2,7 @@ module Suretax
   module Api
     module RequestItemValidator
 
-      extend Suretax::Validatable
+      extend Suretax::Concerns::Validatable
 
       def self.valid?(item)
         is_a_list?(item.tax_exemption_codes) &&
