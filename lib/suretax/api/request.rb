@@ -18,6 +18,7 @@ module Suretax
                     :items
 
       def initialize(args = {})
+        @return_file_code = '0'
         args.each_pair do |key,value|
           self.send("#{key.to_s}=",value)
         end

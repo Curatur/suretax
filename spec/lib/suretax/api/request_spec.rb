@@ -37,6 +37,20 @@ describe Suretax::Api::Request do
     end
   end
 
+  context 'defaults' do
+    describe '#return_file_code' do
+      it 'should have :return_file_code set to "0"' do
+        req = Suretax::Api::Request.new
+        expect(req.return_file_code).to eql('0')
+      end
+
+      it 'should allow you to override the default' do
+        req = Suretax::Api::Request.new({ return_file_code: 'Q' })
+        expect(req.return_file_code).to eql('Q')
+      end
+    end
+  end
+
   describe '#valid?' do
     context 'when the request is valid' do
       it 'should be true' do
