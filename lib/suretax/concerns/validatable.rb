@@ -50,7 +50,7 @@ module Suretax::Concerns
     end
 
     def is_a_valid_response_group?(value)
-      matches?(value, '00|01|02|03')
+      %w/00 01 02 03/.include?(value)
     end
 
     def is_a_valid_response_type?(value)
