@@ -83,6 +83,24 @@ module Suretax::Concerns
       %w/01 02 03 04 05 06 07 14/.include?(value)
     end
 
+    def is_a_valid_trans_type_code?(value)
+      return false if is_blank?(value)
+      true
+    end
+
+    def is_a_valid_sales_type_code?(value)
+      return false if is_blank?(value)
+      matches?(value,'[RBIL]')
+    end
+
+    def is_a_valid_regulatory_code?(value)
+      return false if is_blank?(value)
+      %w/00 01 02 03 04 05 99/.include?(value)
+    end
+
+    def is_a_valid_tax_exemption_code_list?(value)
+      is_a_valid_list?(value) && !is_blank?(value.first)
+    end
 
     def is_an_optional_north_american_phone_number?(value)
       return true if is_blank?(value)
