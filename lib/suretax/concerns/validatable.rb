@@ -8,12 +8,16 @@ module Suretax::Concerns
     def is_a_valid_data_year?(value)
       return false if is_blank?(value)
       value.length == 4 &&
-        matches?(value,(1990..2050).to_a.join('|'))
+        (value.to_i <= 2050 && value.to_i >= 1990)
     end
 
     def is_a_valid_data_month?(value)
-      match_list = "0?(?:" + (1..12).to_a.join('|') + ")"
-      matches?(value,match_list)
+      matches?(value,month_list_subexpression)
+    end
+
+    def month_list_subexpression
+      # Month numbers 1-12 with optional leading zero
+      "0?(?:" + (1..12).to_a.join('|') + ")"
     end
 
     def is_a_valid_list?(value)
@@ -36,8 +40,16 @@ module Suretax::Concerns
     end
 
     def is_a_valid_total_revenue?(value)
-      matches?(value, '\d{,9}(?:\.\d{,4})?') ||
-        matches?(value, '-\d{,8}(?:\.\d{,4})?')
+      matches?(value, total_revenue_positive_subexpression) ||
+        matches?(value, total_revenue_negative_subexpression)
+    end
+
+    def total_revenue_negative_subexpression
+      '-\d{,8}(?:\.\d{,4})?'
+    end
+
+    def total_revenue_positive_subexpression
+      '\d{,9}(?:\.\d{,4})?'
     end
 
     def is_a_valid_return_file_code?(value)
@@ -68,8 +80,9 @@ module Suretax::Concerns
     end
 
     def is_a_valid_tax_situs_rule?(value)
-      (("01".."07").to_a + ["14"]).include?(value)
+      %w/01 02 03 04 05 06 07 14/.include?(value)
     end
+
 
     def is_an_optional_north_american_phone_number?(value)
       return true if is_blank?(value)
