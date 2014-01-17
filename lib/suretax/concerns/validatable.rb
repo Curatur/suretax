@@ -15,8 +15,8 @@ module Suretax::Concerns
       matches?(value,month_list_subexpression)
     end
 
+    # Month numbers 1-12 with optional leading zero
     def month_list_subexpression
-      # Month numbers 1-12 with optional leading zero
       "0?(?:" + (1..12).to_a.join('|') + ")"
     end
 
