@@ -160,4 +160,47 @@ module RequestSpecHelper
     }
   end
 
+  def suretax_valid_request_params
+    {
+       business_unit: "testing",
+       client_number: suretax_client_number,
+       client_tracking: "track",
+       data_month: "7",
+       data_year: "2013",
+       industry_exemption: "",
+       response_group: "03",
+       response_type: "D6",
+       return_file_code: "0",
+       total_revenue: "40",
+       validation_key: suretax_key,
+       items: [ suretax_valid_request_item_params ]
+    }
+  end
+
+  def suretax_valid_request_item_params
+    {
+      bill_to_number: "8585260000",
+      customer_number: "000000007",
+      invoice_number: "1",
+      line_number: "1",
+      orig_number: "8585260000",
+      p_to_p_plus_four: "",
+      p_to_p_zipcode: "",
+      plus_four: "",
+      regulatory_code: "99",
+      revenue: "40",
+      sales_type_code: "R",
+      seconds: "55",
+      tax_included_code: "0",
+      tax_situs_rule: "01",
+      term_number: "8585260000",
+      trans_date: "2013-12-01T00:00:00",
+      trans_type_code: "010101",
+      unit_type: "00",
+      units: "1",
+      zipcode: "",
+      tax_exemption_codes: [ "00", "00" ]
+    }
+  end
+
 end

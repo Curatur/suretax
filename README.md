@@ -2,6 +2,24 @@
 
 # Suretax
 
+
+## Synopsis
+
+```ruby
+request = Suretax::Api::Request.new({ initial: data })
+request.items = [ Suretax::Api::RequestItem.new({ initial: data }) ]
+connection = Suretax::Connection.new
+
+if request.valid?
+  response = connection.post(body: request.params)
+  response.params
+end
+```
+
+You can peek inside the tests for more examples and to see what data
+methods are available.
+
+
 ## Development Environment
 
 Suretax uses [dotenv] to easily switch between development/test environments

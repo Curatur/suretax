@@ -1,4 +1,6 @@
 require 'suretax/api/response'
+require 'suretax/api/request'
+require 'suretax/api/request_item'
 require 'suretax/api/group'
 require 'suretax/api/tax'
 require 'suretax/api/tax_amount'
