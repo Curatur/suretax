@@ -126,8 +126,7 @@ module Suretax::Concerns
     end
 
     def matches?(value,subexpression)
-      match = value =~ /\A#{subexpression}\z/i
-      !match.nil?
+      !! ( value =~ /\A#{subexpression}\z/i )
     end
   end
 end
