@@ -105,6 +105,107 @@ module RequestSpecHelper
     }
   end
 
+  def valid_v03_response_body
+    {
+      "Successful" => "Y",
+      "ResponseCode" => "9999",
+      "HeaderMessage" => "Success",
+      "ItemMessages" => [],
+      "ClientTracking" => "track",
+      "TotalTax" => "1.394490",
+      "TransId" => 2872159,
+      "GroupList" => [
+        {
+        "LineNumber" => "1",
+        "StateCode" => "CA",
+        "InvoiceNumber" => "1",
+        "CustomerNumber" => "000000007",
+        "TaxList" => [
+          {
+            "TaxTypeCode" => "106",
+            "TaxTypeDesc" => "CA EMERG TEL. USERS SURCHARGE",
+            "TaxAmount" => "0.200760",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.005,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "108",
+            "TaxTypeDesc" => "CA P.U.C. FEE",
+            "TaxAmount" => "0.072130",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.0018,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "109",
+            "TaxTypeDesc" => "CA TELECOM RELAY SYSTEMS SURCHARGE",
+            "TaxAmount" => "0.080000",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.002,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "117",
+            "TaxTypeDesc" => "CA HIGH COST FUND(B) SURCHARGE",
+            "TaxAmount" => "0.120000",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.003,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "118",
+            "TaxTypeDesc" => "CA TELECONNECT FUND",
+            "TaxAmount" => "0.236000",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.0059,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "119",
+            "TaxTypeDesc" => "CA HIGH COST FUND(A) SURCHARGE",
+            "TaxAmount" => "0.160000",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.004,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "120",
+            "TaxTypeDesc" => "CA ADVANCED SERV FUND SURCH",
+            "TaxAmount" => "0.065600",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.00164,
+            "PercentTaxable" => 1.0
+          },
+          {
+            "TaxTypeCode" => "122",
+            "TaxTypeDesc" => "CA UNIVERSAL LIFELINE  SURCHARGE",
+            "TaxAmount" => "0.460000",
+            "Revenue" => "40",
+            "CountyName" => "SAN DIEGO",
+            "CityName" => "SAN DIEGO",
+            "TaxRate" => 0.0115,
+            "PercentTaxable" => 1.0
+          }]
+        }
+      ]
+    }
+  end
+
   def valid_failure_response
     {
       "Successful"=>"N",

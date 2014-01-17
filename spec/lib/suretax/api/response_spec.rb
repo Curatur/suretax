@@ -24,6 +24,10 @@ describe Suretax::Api::Response do
       expect(api_response.total_tax.to_f).to eql(1.394490)
     end
 
+    it 'should have a transaction id' do
+      expect(api_response.transaction).to eql('2664495')
+    end
+
     context 'invoice groups' do
       it 'should be the correct number' do
         expect(api_response.groups.count).to eql(1)
