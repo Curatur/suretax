@@ -30,8 +30,7 @@ module Suretax::Concerns
     end
 
     def valid_business_unit?(value)
-      return true if blank?(value)
-      value.length <= 20 && alphanumeric?(value)
+      blank?(value) || (value.length <= 20 && alphanumeric?(value))
     end
 
     def valid_validation_key?(value)
@@ -57,8 +56,7 @@ module Suretax::Concerns
     end
 
     def valid_client_tracking?(value)
-      return true if blank?(value)
-      value.length <= 100
+      blank?(value) || value.length <= 100
     end
 
     def valid_response_group?(value)
@@ -70,13 +68,11 @@ module Suretax::Concerns
     end
 
     def valid_line_number?(value)
-      return true if blank?(value)
-      value.length <= 20 && numeric?(value)
+      blank?(value) || (value.length <= 20 && numeric?(value))
     end
 
     def valid_invoice_number?(value)
-      return true if blank?(value)
-      value.length <= 20 && alphanumeric?(value)
+      blank?(value) || (value.length <= 20 && alphanumeric?(value))
     end
 
     def valid_tax_situs_rule?(value)
@@ -84,18 +80,15 @@ module Suretax::Concerns
     end
 
     def valid_trans_type_code?(value)
-      return false if blank?(value)
-      true
+      !blank?(value)
     end
 
     def valid_sales_type_code?(value)
-      return false if blank?(value)
-      matches?(value,'[RBIL]')
+      !blank?(value) && matches?(value,'[RBIL]')
     end
 
     def valid_regulatory_code?(value)
-      return false if blank?(value)
-      %w/00 01 02 03 04 05 99/.include?(value)
+      !blank?(value) && %w/00 01 02 03 04 05 99/.include?(value)
     end
 
     def valid_tax_exemption_code_list?(value)
@@ -103,13 +96,11 @@ module Suretax::Concerns
     end
 
     def optional_north_american_phone_number?(value)
-      return true if blank?(value)
-      north_american_phone_number?(value)
+      blank?(value) || north_american_phone_number?(value)
     end
 
     def north_american_phone_number?(value)
-      return false if blank?(value)
-      value.length == 10 && numeric?(value)
+      !blank?(value) && (value.length == 10 && numeric?(value))
     end
 
     def numeric?(value)
@@ -121,8 +112,7 @@ module Suretax::Concerns
     end
 
     def blank?(value)
-      return true if value.nil?
-      matches?(value,'\s*')
+      value.nil? || matches?(value,'\s*')
     end
 
     def matches?(value,subexpression)
