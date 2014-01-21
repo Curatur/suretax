@@ -17,6 +17,10 @@ module Suretax
       Response.new(@link.post(path, encode_body(body)))
     end
 
+    def cancel(body: {}, path: default_cancel_path)
+      Response.new(@link.post(path, encode_body(body)))
+    end
+
     private
 
     def encode_body(request_hash)
@@ -28,6 +32,9 @@ module Suretax
       ENV['SURETAX_POST_PATH'] || '/Services/V01/SureTax.asmx/PostRequest'
     end
 
+    def default_cancel_path
+      ENV['SURETAX_CANCEL_PATH'] || '/Services/V01/SureTax.asmx/CancelPostRequest'
+    end
   end
 
 end
