@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module RequestSpecHelper
 
   def valid_encoded_test_request_body
