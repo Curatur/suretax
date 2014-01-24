@@ -7,13 +7,13 @@ module Suretax
   class Connection
     attr_accessor :headers
 
-    def initialize(configuration: Suretax.configuration)
+    def initialize(configuration = Suretax.configuration)
       @link = Faraday.new( url: configuration.base_url )
       @headers = @link.headers
       headers['Content-Type'] = 'application/x-www-form-urlencoded'
     end
 
-    def post(body: {}, path: default_post_path)
+    def post(body = {}, path = default_post_path)
       Response.new(@link.post(path, encode_body(body)))
     end
 
