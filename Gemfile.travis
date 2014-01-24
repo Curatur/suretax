@@ -6,4 +6,4 @@ platforms :rbx do
   gem 'psych'
 end
 
-eval_gemfile File.expand_path('../../Gemfile', __FILE__)
+eval_gemfile File.expand_path('../Gemfile', __FILE__)
