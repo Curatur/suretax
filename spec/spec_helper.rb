@@ -24,6 +24,9 @@ RSpec.configure do |config|
     Suretax.configure do |c|
       c.validation_key = ENV['SURETAX_VALIDATION_KEY']
       c.base_url = ENV['SURETAX_BASE_URL']
+      c.client_number = ENV['SURETAX_CLIENT_NUMBER']
+      c.post_path = ENV['SURETAX_POST_PATH']
+      c.cancel_path = ENV['SURETAX_CANCEL_PATH']
     end
   end
 

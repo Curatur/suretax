@@ -9,9 +9,9 @@ describe Suretax::Api::RequestValidator do
     end
 
     context 'with a valid Request' do
-      let(:request) {
+      let(:request) do
         Suretax::Api::Request.new(suretax_valid_request_params)
-      }
+      end
 
       it 'should be true' do
         expect(validation).to eql(true)
@@ -19,9 +19,7 @@ describe Suretax::Api::RequestValidator do
     end
 
     context 'with an empty Request' do
-      let(:request) {
-        Suretax::Api::Request.new()
-      }
+      let(:request) { Suretax::Api::Request.new() }
 
       it 'should be false' do
         expect(validation).to eql(false)
@@ -29,9 +27,9 @@ describe Suretax::Api::RequestValidator do
     end
 
     context 'validations' do
-        let(:request) {
+        let(:request) do
           Suretax::Api::Request.new(suretax_valid_request_params)
-        }
+        end
 
         describe '#client_number' do
           context 'when present' do
@@ -339,9 +337,9 @@ describe Suretax::Api::RequestValidator do
       end
 
       context 'with invalid items' do
-        let(:request) {
+        let(:request) do
           Suretax::Api::Request.new(suretax_valid_request_params)
-        }
+        end
 
         before do
           request.items = [ Suretax::Api::RequestItem.new ]

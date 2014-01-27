@@ -6,6 +6,14 @@
 ## Synopsis
 
 ```ruby
+Suretax.configure do |c|
+  c.validation_key = ENV['SURETAX_VALIDATION_KEY']
+  c.base_url = ENV['SURETAX_BASE_URL'] || "https://testapi.taxrating.net"
+  c.client_number = ENV['SURETAX_CLIENT_NUMBER']
+  c.post_path = ENV['SURETAX_POST_PATH'] || "/Services/V03/SureTax.asmx/PostRequest"
+  c.cancel_path = ENV['SURETAX_CANCEL_PATH'] || "/Services/V01/SureTax.asmx/CancelPostRequest"
+end
+
 request = Suretax::Api::Request.new({ initial: data })
 request.items = [ Suretax::Api::RequestItem.new({ initial: data }) ]
 connection = Suretax::Connection.new

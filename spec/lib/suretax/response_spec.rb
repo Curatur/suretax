@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe Suretax::Response do
   let(:api_response_class) {
@@ -19,15 +19,13 @@ describe Suretax::Response do
     )
   }
 
-  let(:client_response) {
-    Suretax::Response.new(api_response_object)
-  }
+  let(:client_response) { Suretax::Response.new(api_response_object) }
 
   context 'when posting is successful' do
 
-    let(:response_body) {
+    let(:response_body) do
       suretax_wrap_response(valid_test_response_body.to_json)
-    }
+    end
 
     it 'has a body' do
       expect(client_response.body).to be_instance_of(Hash)
@@ -53,9 +51,9 @@ describe Suretax::Response do
 
 
   context 'when posting is partially successful' do
-    let(:response_body) {
+    let(:response_body) do
       suretax_wrap_response(success_with_item_errors.to_json)
-    }
+    end
 
     before do
       api_response_object.success = false
@@ -85,9 +83,9 @@ describe Suretax::Response do
 
   context 'when posting fails' do
 
-    let(:response_body) {
+    let(:response_body) do
       suretax_wrap_response(post_failed_response_body.to_json)
-    }
+    end
 
     before do
       api_response_object.success = false
@@ -117,9 +115,7 @@ describe Suretax::Response do
 
   context 'when posting fails from a malformed request' do
 
-    let(:response_body) {
-      suretax_wrap_response("invalid request")
-    }
+    let(:response_body) { suretax_wrap_response("invalid request") }
 
     before do
       api_response_object.success = true

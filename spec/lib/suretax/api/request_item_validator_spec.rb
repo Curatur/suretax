@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe Suretax::Api::RequestItemValidator do
 
-  let(:result) {
+  let(:result) do
     Suretax::Api::RequestItemValidator.valid?(request_item)
-  }
+  end
 
-  let(:request_item) {
+  let(:request_item) do
     Suretax::Api::RequestItem.new(suretax_valid_request_item_params)
-  }
+  end
 
   describe '.valid?' do
 
