@@ -208,7 +208,7 @@ module RequestSpecHelper
     }
   end
 
-  def valid_failure_response
+  def post_failed_response_body
     {
       "Successful"=>"N",
       "ResponseCode"=>"1101",

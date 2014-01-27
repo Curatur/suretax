@@ -33,4 +33,5 @@ end
 I18n.enforce_available_locales = false
 
 include RequestSpecHelper
+include CancellationSpecHelper
 include SuretaxSpecHelper
