@@ -86,7 +86,7 @@ describe Suretax::Response do
   context 'when posting fails' do
 
     let(:response_body) {
-      suretax_wrap_response(valid_failure_response.to_json)
+      suretax_wrap_response(post_failed_response_body.to_json)
     }
 
     before do

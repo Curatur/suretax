@@ -63,7 +63,7 @@ describe Suretax::Api::Response do
     end
 
     context 'with a failure response' do
-      let(:response_body) { valid_failure_response }
+      let(:response_body) { post_failed_response_body }
 
       describe '#status' do
         it 'should return the API status code' do
