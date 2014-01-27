@@ -1,5 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/bqsoft/suretax.png)](https://codeclimate.com/github/bqsoft/suretax)
-[![TravisCI](https://api.travis-ci.org/bqsoft/suretax.png)](https://api.travis-ci.org/bqsoft/suretax.png)
+[![TravisCI](https://api.travis-ci.org/bqsoft/suretax.png)](https://travis-ci.org/bqsoft/suretax)
 # Suretax
 
 
