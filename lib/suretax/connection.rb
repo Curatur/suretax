@@ -7,8 +7,8 @@ module Suretax
   class Connection
     attr_accessor :headers
 
-    def initialize(configuration = Suretax.configuration)
-      @link = Faraday.new( url: configuration.base_url )
+    def initialize(args = {})
+      @link = Faraday.new( url: args[:base_url] || configuration.base_url )
       @headers = @link.headers
       headers['Content-Type'] = 'application/x-www-form-urlencoded'
     end
@@ -29,11 +29,15 @@ module Suretax
     end
 
     def default_post_path
-      ENV['SURETAX_POST_PATH'] || '/Services/V01/SureTax.asmx/PostRequest'
+      configuration.post_path
     end
 
     def default_cancel_path
-      ENV['SURETAX_CANCEL_PATH'] || '/Services/V01/SureTax.asmx/CancelPostRequest'
+      configuration.cancel_path
+    end
+
+    def configuration
+      Suretax.configuration
     end
   end
 

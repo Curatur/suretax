@@ -2,13 +2,8 @@ require 'spec_helper'
 
 describe Suretax::Api::RequestItem do
 
-  let(:args) {
-    suretax_valid_request_item_params
-  }
-
-  let(:subject) {
-    Suretax::Api::RequestItem.new(args)
-  }
+  let(:args) { suretax_valid_request_item_params }
+  let(:subject) { Suretax::Api::RequestItem.new(args) }
 
   describe '#tax_exemption_codes' do
 
@@ -63,9 +58,9 @@ describe Suretax::Api::RequestItem do
   end
 
   describe '#params' do
-    let(:valid_params) {
+    let(:valid_params) do
       valid_encoded_test_request_body['ItemList'].first
-    }
+    end
 
     it 'should return a valid parameters hash' do
       expect(subject.params).to eql(valid_params)

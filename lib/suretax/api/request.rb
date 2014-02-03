@@ -17,8 +17,10 @@ module Suretax
                     :validation_key,
                     :items
 
-      def initialize(args = {})
+      def initialize(args = {}, configuration = Suretax.configuration)
         @return_file_code = '0'
+        @client_number = configuration.client_number
+        @validation_key = configuration.validation_key
         args.each_pair do |key,value|
           self.send("#{key.to_s}=",value)
         end
@@ -49,6 +51,12 @@ module Suretax
           "TotalRevenue"             => total_revenue,
           "ValidationKey"            => validation_key
         }
+      end
+
+      private
+
+      def configuration
+        Suretax.configuration
       end
 
     end
