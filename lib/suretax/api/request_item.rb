@@ -1,9 +1,10 @@
-require 'suretax/api/request_item_validator'
-
 module Suretax
   module Api
 
     class RequestItem
+
+      include Suretax::Concerns::Validatable
+
       attr_accessor :bill_to_number,
                     :customer_number,
                     :invoice_number,
@@ -26,6 +27,18 @@ module Suretax
                     :zipcode,
                     :tax_exemption_codes
 
+      validate :bill_to_number,
+               :customer_number,
+               :invoice_number,
+               :line_number,
+               :orig_number,
+               :regulatory_code,
+               :sales_type_code,
+               :tax_situs_rule,
+               :term_number,
+               :trans_type_code,
+               :tax_exemption_codes
+
       def initialize(args = {})
         args.each_pair do |key,value|
           self.send("#{key.to_s}=",value)
@@ -36,10 +49,8 @@ module Suretax
             @tax_exemption_codes << code
           end
         end
-      end
 
-      def valid?
-        RequestItemValidator.valid?(self)
+        validate!
       end
 
       def params
@@ -70,4 +81,3 @@ module Suretax
     end
   end
 end
-__END__

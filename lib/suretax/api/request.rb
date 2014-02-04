@@ -1,8 +1,8 @@
-require 'suretax/api/request_validator'
-
 module Suretax
   module Api
     class Request
+
+      include Suretax::Concerns::Validatable
 
       attr_accessor :business_unit,
                     :client_number,
@@ -17,23 +17,35 @@ module Suretax
                     :validation_key,
                     :items
 
-      def initialize(args = {}, configuration = Suretax.configuration)
-        @return_file_code = '0'
-        @client_number = configuration.client_number
-        @validation_key = configuration.validation_key
-        args.each_pair do |key,value|
+      validate :client_number,
+               :business_unit,
+               :validation_key,
+               :data_year,
+               :data_month,
+               :total_revenue,
+               :return_file_code,
+               :client_tracking,
+               :response_group,
+               :response_type,
+               :items
+
+      def initialize(options = {})
+        self.return_file_code = '0'
+        self.client_number    = options.delete(:client_number)  || configuration.client_number
+        self.validation_key   = options.delete(:validation_key) || configuration.validation_key
+
+        options.each_pair do |key,value|
           self.send("#{key.to_s}=",value)
         end
-        @items = []
-        if args[:items].respond_to?(:each)
-          args[:items].each do |item_args|
-            @items << RequestItem.new(item_args)
+
+        self.items = []
+        if options[:items].respond_to?(:each)
+          options[:items].each do |item_args|
+            self.items << RequestItem.new(item_args)
           end
         end
-      end
 
-      def valid?
-        RequestValidator.valid?(self)
+        validate!
       end
 
       def params
@@ -58,7 +70,6 @@ module Suretax
       def configuration
         Suretax.configuration
       end
-
     end
   end
 end

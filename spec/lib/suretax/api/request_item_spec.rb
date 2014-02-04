@@ -42,21 +42,6 @@ describe Suretax::Api::RequestItem do
     end
   end
 
-  describe '#valid?' do
-    context 'when the item is valid' do
-      it 'should be true' do
-        expect(subject).to be_valid
-      end
-    end
-
-    context 'when the item is not valid' do
-      it 'should be false' do
-        bad_item = Suretax::Api::RequestItem.new
-        expect(bad_item).to_not be_valid
-      end
-    end
-  end
-
   describe '#params' do
     let(:valid_params) do
       valid_encoded_test_request_body['ItemList'].first
