@@ -37,9 +37,9 @@ describe Suretax::Api::Request do
 
     it 'should allow the default configuration to be overridden' do
       client_number = '1122334455'
-      config = Suretax::Configuration.new
-      config.client_number = client_number
-      req = Suretax::Api::Request.new({},config)
+
+      req = Suretax::Api::Request.new({client_number: client_number})
+
       expect(req.client_number).to eql(client_number)
     end
   end
@@ -83,21 +83,6 @@ describe Suretax::Api::Request do
       end
     end
 
-  end
-
-  describe '#valid?' do
-    context 'when the request is valid' do
-      it 'should be true' do
-        expect(api_request).to be_valid
-      end
-    end
-
-    context 'when the request is not valid' do
-      it 'should be false' do
-        api_request.items = nil
-        expect(api_request).to_not be_valid
-      end
-    end
   end
 
   describe '#params' do
