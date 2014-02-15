@@ -35,7 +35,7 @@ module Suretax
         self.validation_key   = options.delete(:validation_key) || configuration.validation_key
 
         options.each_pair do |key,value|
-          self.send("#{key.to_s}=",value)
+          self.send("#{key.to_s}=", value.to_s)
         end
 
         self.items = []

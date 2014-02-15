@@ -17,6 +17,10 @@ describe Suretax::Api::Response do
         expect(api_response).to be_success
       end
 
+      it 'should not have item errors' do
+        expect(api_response).not_to be_item_errors
+      end
+
       it 'should have a message of "Success"' do
         expect(api_response.message).to eql('Success')
       end
@@ -55,6 +59,22 @@ describe Suretax::Api::Response do
         end
       end
 
+      describe "#item_errors?" do
+        it 'should be true' do
+          expect(api_response).to be_item_errors
+        end
+      end
+
+      describe "#item_messages" do
+        it 'should be the correct number' do
+          expect(api_response.item_messages.size).to eql(1)
+        end
+
+        it 'should response to #message' do
+          expect(api_response.item_messages.first).to respond_to(:message)
+        end
+      end
+
       describe '#message' do
         it 'should start with "Failure"' do
           expect(api_response.message).to match(/\ASuccess with item errors/i)
@@ -74,6 +94,12 @@ describe Suretax::Api::Response do
       describe '#success?' do
         it 'should be false' do
           expect(api_response.success?).to be_false
+        end
+      end
+
+      describe "#item_errors?" do
+        it 'should be false' do
+          expect(api_response).not_to be_item_errors
         end
       end
 
