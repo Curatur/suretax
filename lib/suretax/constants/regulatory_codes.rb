@@ -1,5 +1,5 @@
 module Suretax
-  RegulatoryCodes = {
+  REGULATORY_CODES = {
     ilec:     '00', 
     ixc:      '01', 
     clec:     '02', 
