@@ -1,5 +1,5 @@
 module Suretax
-  TransactionTypeCodes = {
+  TRANSACTION_TYPE_CODES = {
     "010101" => "Long Distance, Long Distance Toll",
     "010201" => "Long Distance, 800 Number Service",
     "010202" => "Long Distance, 800 Service - Connection/Disconnection Charge",

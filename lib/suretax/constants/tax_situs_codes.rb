@@ -1,5 +1,5 @@
 module Suretax
-  TaxSitusRules =  { 
+  TAX_SITUS_RULES =  { 
     two_of_three:       '01', 
     billed_to_number:   '02',
     origination_number: '03', 

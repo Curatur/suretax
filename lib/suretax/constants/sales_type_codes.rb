@@ -1,5 +1,5 @@
 module Suretax
-  SalesTypeCodes = {
+  SALES_TYPE_CODES = {
     residential:  'R', 
     business:     'B', 
     industrial:   'I', 
