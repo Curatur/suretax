@@ -12,6 +12,10 @@ module Suretax
         end
       end
 
+      def submit
+        @response = connection.cancel(params)
+      end
+
       def params
         {
           "ClientNumber"   => client_number,

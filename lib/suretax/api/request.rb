@@ -1,5 +1,7 @@
 module Suretax
   module Api
+    class ValidationError < StandardError; end
+
     class Request
 
       include Suretax::Concerns::Validatable
@@ -15,7 +17,8 @@ module Suretax
                     :return_file_code,
                     :total_revenue,
                     :validation_key,
-                    :items
+                    :items,
+                    :response
 
       validate :client_number,
                :business_unit,
@@ -48,6 +51,26 @@ module Suretax
         validate!
       end
 
+      def submit
+        if valid?
+          @response = connection.post(params) 
+        else
+          raise(ValidationError, errors.messages.join(", "))
+        end
+      end
+
+      def valid?
+        !errors.any?
+      end
+
+      def rollback
+        if response
+          CancelRequest.new(transaction: response.transaction, 
+            client_number: client_number, validation_key: validation_key,
+            client_tracking: client_tracking).submit
+        end
+      end
+
       def params
         {
           "BusinessUnit"             => business_unit,
@@ -69,6 +92,10 @@ module Suretax
 
       def configuration
         Suretax.configuration
+      end
+
+      def connection
+        @connection ||= Connection.new
       end
     end
   end
