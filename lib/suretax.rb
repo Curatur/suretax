@@ -5,6 +5,7 @@ require "suretax/concerns"
 require "suretax/configuration"
 require "suretax/connection"
 require "suretax/response"
+require "suretax/constants"
 require "suretax/api"
 
 require "money"
