@@ -41,12 +41,13 @@ module Suretax
 
       def initialize(args = {})
         args.each_pair do |key,value|
-          self.send("#{key.to_s}=",value)
+          self.send("#{key.to_s}=",value.to_s)
         end
+
         @tax_exemption_codes = []
         unless args[:tax_exemption_codes].nil?
           args[:tax_exemption_codes].each do |code|
-            @tax_exemption_codes << code
+            @tax_exemption_codes << code.to_s
           end
         end
 
