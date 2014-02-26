@@ -90,5 +90,61 @@ describe Suretax::Api::Request do
       expect(api_request.params).to eql(valid_params)
     end
   end
+
+  describe "#submit" do
+    subject{ api_request.submit }
+    let(:api_path) { suretax_post_path }
+
+    before(:each) do 
+      stub_request(:post, "#{suretax_url}#{api_path}").to_return(
+        status: 200,
+        body: suretax_wrap_response(valid_test_response_body.to_json)
+      )
+    end
+
+    it "should return a Suretax::Api::Response" do
+      should be_a_kind_of(Suretax::Api::Response)
+    end
+
+    it{ should have_at_least(1).groups }
+
+    it "should have taxes" do
+      subject.groups.map(&:taxes).should_not be_empty 
+    end
+
+    it "should have a transaction number" do
+      subject.transaction.should_not be_nil
+      subject.transaction.size.should_not be_zero
+    end
+  end
+
+  describe "#rollback" do
+    subject{ api_request.rollback }
+
+    context "before submitting the request" do
+      before(:each){ api_request.send(:response).should be_nil }
+      it{ should be_nil }
+    end
+
+    context "after submitting the request" do
+      before(:each) do 
+        stub_request(:post, "#{suretax_url}#{suretax_post_path}").to_return(
+          status: 200,
+          body: suretax_wrap_response(valid_test_response_body.to_json)
+        )
+        api_request.submit
+      end
+
+      it "should issue a cancel request" do
+        Suretax::Api::CancelRequest.should_receive(:new).
+          with(transaction:     api_request.response.transaction, 
+               client_number:   api_request.client_number, 
+               validation_key:  api_request.validation_key, 
+               client_tracking: api_request.client_tracking).
+          and_return{ double(Suretax::Api::CancelRequest, submit: true) }
+        subject
+      end
+    end
+  end
 end
 

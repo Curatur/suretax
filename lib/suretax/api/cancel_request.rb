@@ -13,7 +13,8 @@ module Suretax
       end
 
       def submit
-        @response = connection.cancel(params)
+        suretax_response = connection.cancel(params)
+        @response = Suretax::Api::Response.new(suretax_response.body)
       end
 
       def params

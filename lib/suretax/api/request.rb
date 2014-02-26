@@ -53,7 +53,8 @@ module Suretax
 
       def submit
         if valid?
-          @response = connection.post(params) 
+          suretax_response = connection.post(params)
+          @response = Suretax::Api::Response.new(suretax_response.body)
         else
           raise(ValidationError, errors.messages.join(", "))
         end
