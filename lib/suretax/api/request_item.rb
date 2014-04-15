@@ -56,27 +56,27 @@ module Suretax
 
       def params
         {
-          "BillToNumber"         => bill_to_number,
-          "CustomerNumber"       => customer_number,
-          "InvoiceNumber"        => invoice_number,
           "LineNumber"           => line_number,
-          "OrigNumber"           => orig_number,
-          "P2PPlus4"             => p_to_p_plus_four,
-          "P2PZipcode"           => p_to_p_zipcode,
+          "InvoiceNumber"        => invoice_number,
+          "CustomerNumber"       => customer_number,
+          "OrigNumber"           => orig_number      || '',
+          "TermNumber"           => term_number      || '',
+          "BillToNumber"         => bill_to_number   || '',
+          "Zipcode"              => zipcode,
           "Plus4"                => plus_four,
-          "RegulatoryCode"       => regulatory_code,
-          "Revenue"              => revenue,
-          "SalesTypeCode"        => sales_type_code,
-          "Seconds"              => seconds,
-          "TaxExemptionCodeList" => tax_exemption_codes,
+          "P2PZipcode"           => p_to_p_zipcode   || '',
+          "P2PPlus4"             => p_to_p_plus_four || '',
+          "TransDate"            => trans_date       || Date.today.strftime('%m-%d-%Y'),
+          "Revenue"              => revenue.to_f,
+          "Units"                => units.to_i,
+          "UnitType"             => unit_type        || '00',
+          "Seconds"              => seconds.to_i,
           "TaxIncludedCode"      => tax_included_code,
           "TaxSitusRule"         => tax_situs_rule,
-          "TermNumber"           => term_number,
-          "TransDate"            => trans_date,
           "TransTypeCode"        => trans_type_code,
-          "UnitType"             => unit_type,
-          "Units"                => units,
-          "Zipcode"              => zipcode
+          "SalesTypeCode"        => sales_type_code,
+          "RegulatoryCode"       => regulatory_code,
+          "TaxExemptionCodeList" => tax_exemption_codes
         }
       end
     end

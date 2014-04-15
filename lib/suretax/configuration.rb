@@ -1,6 +1,7 @@
 module Suretax
   class Configuration
-    attr_accessor :validation_key, :base_url, :client_number, :post_path, :cancel_path
+    attr_accessor :validation_key, :base_url, :client_number, 
+      :post_path, :cancel_path, :logger
 
     def initialize
       register_currencies

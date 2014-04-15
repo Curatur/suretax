@@ -17,6 +17,8 @@ module Suretax
       @body = JSON.parse(sanitized_body)
       @api = Api::Response.new(@body)
       @status = map_response_code_to_http_status(api.status)
+
+      log_response
     end
 
     def success?
@@ -44,6 +46,18 @@ module Suretax
       else
         400
       end
+    end
+
+    def log_response
+      logger.debug "\nSureTax Response Received:\n#{@body.inspect}" if logger
+    end
+
+    def logger
+      configuration.logger
+    end
+
+    def configuration
+      Suretax.configuration
     end
 
   end
