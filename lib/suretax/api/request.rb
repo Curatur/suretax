@@ -53,6 +53,7 @@ module Suretax
 
       def submit
         if valid?
+          log_request
           suretax_response = connection.post(params)
           @response = Suretax::Api::Response.new(suretax_response.body)
         else
@@ -74,22 +75,30 @@ module Suretax
 
       def params
         {
-          "BusinessUnit"             => business_unit,
           "ClientNumber"             => client_number,
-          "ClientTracking"           => client_tracking,
-          "DataMonth"                => data_month,
+          "BusinessUnit"             => business_unit || '',
+          "ValidationKey"            => validation_key,
           "DataYear"                 => data_year,
-          "IndustryExemption"        => industry_exemption,
-          "ItemList"                 => items.map { |item| item.params },
-          "ResponseGroup"            => response_group,
-          "ResponseType"             => response_type,
+          "DataMonth"                => data_month,
+          "TotalRevenue"             => total_revenue.to_f,
           "ReturnFileCode"           => return_file_code,
-          "TotalRevenue"             => total_revenue,
-          "ValidationKey"            => validation_key
+          "ClientTracking"           => client_tracking || '',
+          "IndustryExemption"        => industry_exemption,
+          "ResponseType"             => response_type,
+          "ResponseGroup"            => response_group,
+          "ItemList"                 => items.map { |item| item.params }
         }
       end
 
       private
+
+      def log_request
+        logger.info "\nSureTax Request sent:\n#{params.inspect}" if logger
+      end
+
+      def logger
+        configuration.logger
+      end
 
       def configuration
         Suretax.configuration

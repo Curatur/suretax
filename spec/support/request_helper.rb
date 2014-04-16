@@ -4,45 +4,45 @@ module RequestSpecHelper
 
   def valid_encoded_test_request_body
     {
-      "BusinessUnit"             => "testing",
       "ClientNumber"             => suretax_client_number,
+      "BusinessUnit"             => "testing",
+      "ValidationKey"            => suretax_key,
       "ClientTracking"           => "track",
       "DataMonth"                => "7",
       "DataYear"                 => "2013",
-      "IndustryExemption"        => "",
-      "ItemList"                 => [
-        {
-          "BillToNumber"         => "8585260000",
-          "CustomerNumber"       => "000000007",
-          "InvoiceNumber"        => "1",
-          "LineNumber"           => "1",
-          "OrigNumber"           => "8585260000",
-          "P2PPlus4"             => "",
-          "P2PZipcode"           => "",
-          "Plus4"                => "",
-          "RegulatoryCode"       => "99",
-          "Revenue"              => "40",
-          "SalesTypeCode"        => "R",
-          "Seconds"              => "55",
-          "TaxExemptionCodeList" => [
-            "00",
-            "00"
-          ],
-          "TaxIncludedCode"      => "0",
-          "TaxSitusRule"         => "01",
-          "TermNumber"           => "8585260000",
-          "TransDate"            => "2013-12-01T00:00:00",
-          "TransTypeCode"        => "010101",
-          "UnitType"             => "00",
-          "Units"                => "1",
-          "Zipcode"              => ""
-        }
-      ],
       "ResponseGroup"            => "03",
       "ResponseType"             => "D6",
       "ReturnFileCode"           => "0",
-      "TotalRevenue"             => "40",
-      "ValidationKey"            => suretax_key
+      "TotalRevenue"             => 40.0,
+      "IndustryExemption"        => "",
+      "ItemList"                 => [
+        {
+          "LineNumber"           => "1",
+          "InvoiceNumber"        => "1",
+          "CustomerNumber"       => "000000007",
+          "OrigNumber"           => "8585260000",
+          "TermNumber"           => "8585260000",
+          "BillToNumber"         => "8585260000",
+          "Zipcode"              => "",
+          "Plus4"                => "",
+          "P2PZipcode"           => "",
+          "P2PPlus4"             => "",
+          "TransDate"            => "2013-12-01T00:00:00",
+          "Revenue"              => 40.0,
+          "Units"                => 1,
+          "UnitType"             => "00",
+          "Seconds"              => 55,
+          "TaxIncludedCode"      => "0",
+          "TaxSitusRule"         => "01",
+          "TransTypeCode"        => "010101",
+          "SalesTypeCode"        => "R",
+          "RegulatoryCode"       => "99",
+          "TaxExemptionCodeList" => [
+            "00",
+            "00"
+          ]
+        }
+      ]
     }
   end
 
