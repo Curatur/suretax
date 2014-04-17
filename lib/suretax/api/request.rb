@@ -37,16 +37,13 @@ module Suretax
         self.client_number    = options.delete(:client_number)  || configuration.client_number
         self.validation_key   = options.delete(:validation_key) || configuration.validation_key
 
+        default_data_date(options)
+
         options.each_pair do |key,value|
           self.send("#{key.to_s}=", value.to_s)
         end
 
-        self.items = []
-        if options[:items].respond_to?(:each)
-          options[:items].each do |item_args|
-            self.items << RequestItem.new(item_args)
-          end
-        end
+        initialize_items(options)
 
         validate!
       end
@@ -92,21 +89,37 @@ module Suretax
 
       private
 
-      def log_request
-        logger.info "\nSureTax Request sent:\n#{params.inspect}" if logger
-      end
+        def default_data_date(options)
+          data_date = configuration.production? ? Date.today : Date.today.prev_month
 
-      def logger
-        configuration.logger
-      end
+          self.data_month = options.delete(:data_month) || data_date.strftime('%m')
+          self.data_year  = options.delete(:data_year)  || data_date.strftime('%Y')
+        end
 
-      def configuration
-        Suretax.configuration
-      end
+        def initialize_items(options)
+          self.items = []
+          if options[:items].respond_to?(:each)
+            options[:items].each do |item_args|
+              self.items << RequestItem.new(item_args)
+            end
+          end
+        end
 
-      def connection
-        @connection ||= Connection.new
-      end
+        def log_request
+          logger.info "\nSureTax Request sent:\n#{params.inspect}" if logger
+        end
+
+        def logger
+          configuration.logger
+        end
+
+        def configuration
+          Suretax.configuration
+        end
+
+        def connection
+          @connection ||= Connection.new
+        end
     end
   end
 end

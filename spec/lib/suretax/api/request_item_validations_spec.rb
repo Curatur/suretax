@@ -129,7 +129,7 @@ describe "Suretax API Request Item Validations" do
   describe '#trans_type_code' do
     context 'when present' do
       it 'should pass validation' do
-        request_item.trans_type_code = '1'
+        request_item.trans_type_code = '010101'
 
         expect(request_item.errors.any?).to eq false
       end

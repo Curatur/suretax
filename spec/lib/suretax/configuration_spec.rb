@@ -41,6 +41,33 @@ describe Suretax do
     it 'should allow me to set the default cancel path' do
       expect(config.cancel_path).to include(cancel_path)
     end
+
+    it 'should default #mode to production' do
+      expect(config.mode).to eql 'production'
+    end
+
+    context 'when setting the mode' do
+      before(:each) { config.mode = mode }
+      let(:mode)    { 'test' }
+
+      it 'should allow me to set the default mode' do
+        expect(config.mode).to eql mode
+      end
+    end
+  end
+
+  describe 'production?' do
+    subject { Suretax.configuration.production? }
+
+    context 'when mode = production' do
+      before(:each) { Suretax.configuration.mode = 'production' }
+      it { should eql true }
+    end
+
+    context 'when mode is not production' do
+      before(:each) { Suretax.configuration.mode = 'test' }
+      it { should eql false }
+    end
   end
 
   describe 'loading from the app environment' do
