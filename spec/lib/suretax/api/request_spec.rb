@@ -146,5 +146,54 @@ describe Suretax::Api::Request do
       end
     end
   end
+
+  describe '#data_month' do
+    subject { Suretax::Api::Request.new(options) }
+
+    context 'when the value is supplied' do
+      let(:options) { { data_month: '04' } }
+      its(:data_month) { should eql '04' }
+    end
+
+    context 'when the value is not supplied' do
+      let(:options) { { } }
+
+      context 'and Suretax is configured for production' do
+        before(:each) { Suretax.configuration.mode = 'production' }
+        its(:data_month) { should eql Date.today.strftime('%m') }
+      end
+
+      context 'and Suretax is not configured for production' do
+        before(:each) { Suretax.configuration.mode = 'test' }
+        after(:each)  { Suretax.configuration.mode = 'production' }
+        its(:data_month) { should eql Date.today.prev_month.strftime('%m') }
+      end
+    end
+  end
+
+  describe '#data_year' do
+    subject { Suretax::Api::Request.new(options) }
+
+    context 'when the value is supplied' do
+      let(:options) { { data_year: '2012' } }
+      its(:data_year) { should eql '2012' }
+    end
+
+    context 'when the value is not supplied' do
+      before(:each) { Date.stub(:today) { Date.new(2014, 01, 01) } }
+      let(:options) { { } }
+
+      context 'and Suretax is configured for production' do
+        before(:each) { Suretax.configuration.mode = 'production' }
+        its(:data_year) { should eql Date.today.strftime('%Y') }
+      end
+
+      context 'and Suretax is not configured for production' do
+        before(:each) { Suretax.configuration.mode = 'test' }
+        after(:each)  { Suretax.configuration.mode = 'production' }
+        its(:data_year) { should eql Date.today.prev_month.strftime('%Y') }
+      end
+    end
+  end
 end
 

@@ -1,10 +1,15 @@
 module Suretax
   class Configuration
     attr_accessor :validation_key, :base_url, :client_number, 
-      :post_path, :cancel_path, :logger
+      :post_path, :cancel_path, :logger, :mode
 
     def initialize
       register_currencies
+      self.mode = 'production'
+    end
+
+    def production?
+      mode == 'production'
     end
 
     private

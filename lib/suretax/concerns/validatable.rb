@@ -125,7 +125,7 @@ module Suretax::Concerns
       end
 
       def valid_response_group?(value)
-        %w{00 01 02 03}.include?(value)
+        Suretax::RESPONSE_GROUPS.values.include?(value)
       end
 
       def valid_response_type?(value)
@@ -141,19 +141,20 @@ module Suretax::Concerns
       end
 
       def valid_tax_situs_rule?(value)
-        %w{01 02 03 04 05 06 07 14}.include?(value)
+        Suretax::TAX_SITUS_RULES.values.include?(value)
       end
 
       def valid_trans_type_code?(value)
-        !blank?(value)
+        !blank?(value) && Suretax::TRANSACTION_TYPE_CODES.keys.include?(value)
       end
 
       def valid_sales_type_code?(value)
-        !blank?(value) && matches?(value,'[RBIL]')
+        match_value = "[#{Suretax::SALES_TYPE_CODES.values.join}]"
+        !blank?(value) && matches?(value, match_value)
       end
 
       def valid_regulatory_code?(value)
-        !blank?(value) && %w{00 01 02 03 04 05 99}.include?(value)
+        !blank?(value) && Suretax::REGULATORY_CODES.values.include?(value)
       end
 
       def valid_tax_exemption_code_list?(value)
