@@ -196,7 +196,7 @@ module Suretax::Concerns
       end
 
       def matches?(value,subexpression)
-        !! ( value =~ /\A#{subexpression}\z/i )
+        /\A#{subexpression}\z/i === value
       end
 
       # Month numbers 1-12 with optional leading zero
